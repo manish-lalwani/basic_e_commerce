@@ -1,8 +1,15 @@
 from django.shortcuts import render
-
+from .models import Product
+from math import ceil
 # Create your views here.
 def index(request):
-    return render(request=request,template_name="index.html")
+    context={}
+    products = Product.objects.all()
+    context["products"] = products
+    no_of_slides = len(products) // 4 if len(products) % 4 != 0 else  (len(products) // 4) +1
+    context["no_of_slides"] = no_of_slides
+    context["range"] = range(no_of_slides)
+    return render(request=request,template_name="index.html",context=context)
 
 def contact(request):
     return render(request=request,template_name="contact.html")
