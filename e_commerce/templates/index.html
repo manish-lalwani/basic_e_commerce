@@ -46,6 +46,8 @@
 
 {% block body %}
   {% load static %}
+  {{ products_json|json_script:"products_json_id" }}
+  <script src={% static 'e_commerce/index.js'%} defer> var products = {{ products_json|safe }}; </script>
   {% comment %}banner carousal{% endcomment %}
   <div id="carouselExampleIndicators" class="carousel slide">
     <div class="carousel-indicators">
@@ -80,199 +82,126 @@
     </button>
   </div>
 
-  {% comment %} <div class="card">
-    <br />
-    <br />
-    <h1>Lorem ipsum</h1>
-    {% load static %}
-    <img src="https://source.unsplash.com/1920x1080/?technology" />
-  </div> {% endcomment %}
 
-  {% comment %}card carousal{% endcomment %}
-  {% comment %} <div id="demo" class="carousal slide" data-bs-ride="carousal">
-    <ul class="carousel-indicators">
-      <li data-bs-target="#demo" data-bs-slide-to="0" class="active"></li>
-      <li data-bs-target="#demo" data-bs-slide-to="1" class="active"></li>
-      <li data-bs-target="#demo" data-bs-slide-to="2" class="active"></li>
-    </ul>
 
-    <div class="container carousal-inner no-padding">
-      <div class="carousal-item active">
-        <div class="col-xs-3 col-sm-3 col-md-3">
-          <div class="card" style="width: 18rem;">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
+<!--  &lt;!&ndash; Own card carousal &ndash;&gt;-->
+<!--  &lt;!&ndash; if statement &ndash;&gt;-->
+<!--  <div id="carouselExampleIndicators1" class="carousel slide ">-->
+<!--    <div id="carousel_indicators_buttons"class="carousel-indicators">-->
+<!--      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--      -->
+<!--      {% comment %} {% for i in total_products_count %} {% endcomment %}-->
+<!--      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="{{i}}" aria-label="Slide {{i}}"></button>-->
+<!--      {% comment %} {% endfor %} {% endcomment %}-->
+<!--    </div>-->
+<!--    <div class="carousel-inner my-2 ">-->
+<!--      <h2 class="ms-5">Deals of the Day</h2>-->
+<!--      <div class="carousel-item active ">-->
 
-          <div class="card" style="width: 18rem;">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
+<!--          <div class="row">-->
+<!--            <div class="card col-3">-->
+<!--              <img src="{% get_media_prefix %}{{products.0.product_image}}" class="d-block w-100" alt="..." />-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">{{products.0.product_name}}</h5>-->
+<!--                <p class="card-text">{{products.0.product_description}}</p>-->
+<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--           -->
+<!--            <div class="card col-3">-->
+<!--              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">Card title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card col-3">-->
+<!--              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">Card title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="card col-3" >-->
+<!--              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--              <div class="card-body">-->
+<!--                <h5 class="card-title">Card title</h5>-->
+<!--                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--                <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div> -->
 
-          <div class="card" style="width: 18rem;">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
+<!--      </div>-->
 
-          <div class="card" style="width: 18rem;">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> {% endcomment %}
+<!--  -->
+<!--      <div class="carousel-item">-->
+<!--        <div class="row">-->
+<!--          <div class="card col-3">-->
+<!--            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Card title</h5>-->
+<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--              <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--         -->
+<!--          <div class="card col-3">-->
+<!--            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Card title</h5>-->
+<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--              <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card col-3">-->
+<!--            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Card title</h5>-->
+<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--              <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="card col-3" >-->
+<!--            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />-->
+<!--            <div class="card-body">-->
+<!--              <h5 class="card-title">Card title</h5>-->
+<!--              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--              <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div> -->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">-->
+<!--      <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--      <span class="visually-hidden">Previous</span>-->
+<!--    </button>-->
+<!--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">-->
+<!--      <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--      <span class="visually-hidden">Next</span>-->
+<!--    </button>-->
+<!--  </div>-->
 
-  <!-- Own card carousal -->
-  <div id="carouselExampleIndicators1" class="carousel slide ">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner my-2 ">
-      <h2 class="ms-5">Deals of the Day</h2>
-      <div class="carousel-item active ">
 
-          <div class="row">
-            <div class="card col-3">
-              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-           
-            <div class="card col-3">
-              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-            <div class="card col-3">
-              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-            <div class="card col-3" >
-              <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div> 
+  <div id="carouselExampleIndicators2" class="carousel slide ">
+    <div id="carousel_indicators_buttons2" class="carousel-indicators"></div>
+    <div id ="carousal_inner2" class="carousel-inner my-2 "> </div>
 
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-         
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card col-3" >
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div> 
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-         
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card col-3">
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-          <div class="card col-3" >
-            <img src="https://source.unsplash.com/1920x1080/?technology" class="d-block w-100" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div> 
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
+
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
+
+
   </div>
-
-
-
-
 {% endblock %}
+
