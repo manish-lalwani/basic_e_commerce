@@ -26,3 +26,13 @@ class Product(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)
 #     otp_code = models.CharField(max_length=6)
 #     is_verified = models.BooleanField(default=False)
+
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    email = models.EmailField()
+    address = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.user.username

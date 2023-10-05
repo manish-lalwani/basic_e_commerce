@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% csrf_token %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">{{ title }}</div>
+          <div class="card-body">
+            {% if activated %}
+              <p>Your account has been activated successfully. You can now <a href="{% url 'login' %}">login</a>.</p>
+            {% else %}
+              <p>Sorry, we could not activate your account. Please contact support.</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
